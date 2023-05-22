@@ -20,6 +20,8 @@ else:
 
 if 'model' in os.environ:
     model = os.environ['model']
+    model = model.upper()
+    model = model.replace('+', '%2B')
 
 if not os.path.exists(archive_folder):
     os.makedirs(archive_folder)
