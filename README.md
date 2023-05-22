@@ -11,4 +11,8 @@ services:
       #- model=ds720+
       #- dryrun=true
       - version=6.2
+    restart: no
 ```
+Uncomment or comment options when needed, do not leave empty, just comment them
+
+Docker image will stop when finished, check the logs
