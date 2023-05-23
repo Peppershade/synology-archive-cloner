@@ -61,11 +61,19 @@ for version in versions:
     os.makedirs(archive_folder + '/' + version, exist_ok=True)
     version_number = version.split('/')[-1]
     version_path = archive_folder + '/' + version_number
-    print('Collecting PAT files for version: ' + version)
+    print('Looking for PATs for: ' + version_number)
+
     if model:
         pats = download_pat_model(version, model)
     else:
         pats = download_pat(version)
+
+    if not pats:
+        print('No PAT files found for version: ' + version_number)
+        continue
+    else:
+        os.makedirs(archive_folder + '/' + version, exist_ok=True)
+
     for pat in pats:
         filename = os.path.basename(pat)
         if os.path.exists(version_path + '/' + filename):
@@ -76,7 +84,7 @@ for version in versions:
         if not dryrun:
             urllib.request.urlretrieve(pat, version_path + '/' + filename)
         else:
-            print('Dryrun: ' + version_path + '/' + filename)
+            print('Dryrun: ' + version_number + '/' + filename)
     print('Finished downloading PAT files for version: ' + version)
 print('Finished downloading PAT files for all versions')
 
