@@ -71,8 +71,8 @@ for version in versions:
     if not pats:
         print('No PAT files found for version: ' + version_number)
         continue
-    else:
-        os.makedirs(archive_folder + '/' + version, exist_ok=True)
+
+    os.makedirs(archive_folder + '/' + version, exist_ok=True)
 
     for pat in pats:
         filename = os.path.basename(pat)
