@@ -59,7 +59,8 @@ versions = collect_versions()
 print('Found versions: ' + str(versions))
 for version in versions:
     os.makedirs(archive_folder + '/' + version, exist_ok=True)
-    version_path = archive_folder + '/' + version
+    version_number = version.split('/')[-1]
+    version_path = archive_folder + '/' + version_number
     print('Collecting PAT files for version: ' + version)
     if model:
         pats = download_pat_model(version, model)
